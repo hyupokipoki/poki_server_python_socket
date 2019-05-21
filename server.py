@@ -39,4 +39,4 @@ def request(message):
 
 
 if __name__ == '__main__':
-    socket_io.run(app, debug=True, port=8082)
+    socket_io.run(app, host='0.0.0.0', debug=True, port=8082)
