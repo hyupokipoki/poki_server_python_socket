@@ -23,13 +23,18 @@ def hello_world():
 def request(message):
     print("message : "+ str(message))
     to_client = dict()
-    to_client['message'] = message["msg"]
-    to_client['fromUid'] = message["name"]
+    clientSock = socket(AF_INET, SOCK_STREAM)
+    clientSock.connect(('127.0.0.1', 8081))
+    print('연결 확인 됐습니다.')
+    clientSock.send(str(message["msg"]).encode('utf-8'))
+    print('메시지를 전송했습니다.')
+    data = clientSock.recv(1024)
+    print('받은 데이터 : ', data.decode('utf-8'))
+    to_client['message'] = data.decode('utf-8')
+    to_client['fromUid'] = 'poki'
     room = message["name"]
-
     join_room(room);
     send(to_client, room=room)
-    # send(to_client, room=message["name"])
 
 
 
