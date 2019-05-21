@@ -26,6 +26,11 @@ def hello_world():
 def request(message):
     print("message : "+ str(message))
     to_client = dict()
+    from_client = dict()
+
+    from_client['message'] = message["msg"]
+    from_client['fromUid'] = message["name"]
+
     clientSock = socket(AF_INET, SOCK_STREAM)
     clientSock.connect(('127.0.0.1', 8081))
     print('연결 확인 됐습니다.')
@@ -37,6 +42,8 @@ def request(message):
     to_client['fromUid'] = 'poki'
     room = message["name"]
     join_room(room);
+    
+    send(from_client, room=room)
     send(to_client, room=room)
 
 
