@@ -2,6 +2,9 @@ from flask import Flask, jsonify, render_template
 from subprocess import call
 from flask_socketio import SocketIO, send, join_room
 # from flask_socketio import join_room, leave_room
+from socket import *
+import sys
+
 
 app = Flask(__name__)
 app.secret_key = "mysecret"
