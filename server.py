@@ -36,7 +36,7 @@ def request(message):
     print('연결 확인 됐습니다.')
     clientSock.send(str(message["msg"]).encode('utf-8'))
     print('메시지를 전송했습니다.')
-    data = clientSock.recv(2048)
+    data = clientSock.recv(10000)
     print('받은 데이터 : ', data.decode('utf-8'))
     to_client['message'] = data.decode('utf-8')
     to_client['fromUid'] = 'poki'
